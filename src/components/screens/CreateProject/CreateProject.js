@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Input, Modal, Button, Form, Icon } from 'antd'
+import { Input, Modal, Button, Form, Icon, Tag, Tooltip } from 'antd'
 
 const styles = {
     container: {
@@ -21,6 +21,7 @@ class CreateProject extends Component {
         title: '',
         body: '',
         tags: [],
+        tagsInputValue: '',
     }
 
     createOnChangeHandler = inputType => e => this.setState({
@@ -36,6 +37,7 @@ class CreateProject extends Component {
             title: '',
             body: '',
             tags: [],
+            tagsInputValue: '',
         })
     }
 
@@ -47,6 +49,28 @@ class CreateProject extends Component {
         })
         this.dismissModal()
         this.clearForm()
+    }
+
+    handleTagsChange = (e) => {
+        this.setState({ tagsInputValue: e.target.value });
+        if (e.target.value.indexOf(' ') != -1) {
+            const state = this.state;
+            const tagsInputValue = state.tagsInputValue;
+            let tags = state.tags;
+            if (tagsInputValue && tags.indexOf(tagsInputValue) === -1) {
+                tags = [...tags, tagsInputValue];
+            }
+            this.setState({
+                tags,
+                inputVisible: false,
+                tagsInputValue: '',
+            });
+        }
+    }
+
+    handleCloseTag = (removedTag) => {
+        const tags = this.state.tags.filter(tag => tag !== removedTag);
+        this.setState({ tags });
     }
 
     render(){
@@ -93,10 +117,16 @@ class CreateProject extends Component {
                             />
                         </Form.Item>
                         <Form.Item label = "Метки">
-                            <Input
-                                // value = {this.state.tags}
-                                // onChange = {this.createOnChangeHandler('tags')}
-                            />
+                            <Input onChange={this.handleTagsChange} value={this.state.tagsInputValue} />
+                            {this.state.tags.map((tag, index) => {
+                                const isLongTag = tag.length > 20;
+                                const tagElem = (
+                                    <Tag key={tag} closable={index !== -1} afterClose={() => this.handleCloseTag(tag)}>
+                                        {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                                    </Tag>
+                                );
+                                return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                            })}
                         </Form.Item>
                     </Form>
                 </Modal>
