@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { HashRouter } from 'react-router-dom'
 
-import RoutesContainer from './RoutesContainer.js'
+import Routes from './Routes.js'
 
 class App extends Component {
 
     render(){
         return (
             <HashRouter>
-                <RoutesContainer />
+                <Routes />
             </HashRouter>
         )
     }
