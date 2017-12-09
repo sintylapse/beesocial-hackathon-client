@@ -14,7 +14,11 @@ const styles = {
     },
 }
 
-function ProjectItems({ data }){
+function ProjectItems({ data, onClickItem }){
+    const onCLickItem = item => {
+        onClickItem(item)
+    }
+
     return <List
         itemLayout = "horizontal"
         dataSource = {data}
@@ -40,6 +44,11 @@ function ProjectItems({ data }){
                             </div>
                         }
                     />
+                    <Tooltip title = {'Опубликовать проект'}>
+                        <Button type = "primary" onClick = {() => onCLickItem(item)}>
+                            <Icon type = "plus" />
+                        </Button>
+                    </Tooltip>
                 </List.Item>
             )
         }
@@ -114,7 +123,7 @@ class CreateProject extends Component {
                 <div style = {{ marginTop: 20 }}>
                     {
                         projects.length > 0 ?
-                            <ProjectItems data = {projects} /> :
+                            <ProjectItems data = {projects} onClickItem = {this.props.actions.addProjectToCompetition} /> :
                             <div>
                                 Пока проектов нет...
                             </div>
