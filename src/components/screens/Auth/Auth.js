@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Form, Input, Icon } from 'antd'
 
+import { redirectTo } from '../../../api/browserApi.js'
+
 const logo = require('../../../assets/logo-registration.png')
 
 const styles = {
@@ -29,6 +31,11 @@ class Auth extends Component {
         [inputType]: e.target.value,
     })
 
+    _login = () => {
+        this.props.actions.setUser(this.state.username)
+        redirectTo('/dashboard/projects')
+    }
+
     render(){
         return (
             <div className = "fadeInDown animated" style = {styles.loginContainer}>
@@ -53,17 +60,13 @@ class Auth extends Component {
                             value = {this.state.password}
                             onChange = {this.createOnChangeHandler('password')}
                             placeholder = "Пароль"
+                            type = "password"
                         />
                     </Form.Item>
                 </Form>
-                <Button>
+                <Button onClick = {this._login}>
                     Войти
                 </Button>
-                <Link to = "/create">
-                    <Button>
-                        Create
-                    </Button>
-                </Link>
             </div>
         )
     }

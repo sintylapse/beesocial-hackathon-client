@@ -2,30 +2,25 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import CreateProject from './CreateProject.js'
+import Dashboard from './Dashboard.js'
 
 import * as globalActions from '../../../actions/globalActions.js'
 
-class CreateProjectContainer extends React.Component {
-
-    componentDidMount(){
-        this.props.actions.setUser({
-            name: 'John',
-        })
-    }
+class DashboardContainer extends React.Component {
 
     render() {
-        return <CreateProject {...this.props} />
+        return <Dashboard {...this.props} />
     }
 
 }
 
 const mapStateToProps = state => ({
     user: state.globalReducer.user,
+    projects: state.globalReducer.projects,
 })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(globalActions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer)

@@ -8,12 +8,6 @@ import * as globalActions from '../../../actions/globalActions.js'
 
 class AuthContainer extends React.Component {
 
-    componentDidMount(){
-        this.props.actions.setUser({
-            name: 'John',
-        })
-    }
-
     render() {
         return <Auth {...this.props} />
     }

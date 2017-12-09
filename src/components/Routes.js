@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 import AuthContainer from './screens/Auth/AuthContainer.js'
-import CreateProject from './screens/CreateProject/CreateProject.js'
+import DashboardContainer from './screens/Dashboard/DashboardContainer.js'
 
 class RoutesContainer extends Component {
 
@@ -10,7 +10,7 @@ class RoutesContainer extends Component {
         return (
             <Switch>
                 <Route exact path = {'/'} component = {AuthContainer} />
-                <Route path = {'/create'} component = {CreateProject} />
+                <Route path = {'/dashboard'} component = {DashboardContainer} />
             </Switch>
         )
     }

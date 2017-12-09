@@ -6,3 +6,15 @@ export function setUser(user){
         type: 'SET_USER', user,
     }
 }
+
+export function setProjects(projects){
+    return {
+        type: 'SET_PROJECTS', projects,
+    }
+}
+
+export const addProject = project => (dispatch, getState) => {
+    const { projects } = getState().globalReducer
+
+    dispatch(setProjects([project, ...projects]))
+}

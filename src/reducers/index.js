@@ -4,7 +4,7 @@ import createFilter from 'redux-persist-transform-filter'
 
 import globalReducer from './globalReducer.js'
 
-const saveSubsetFilterDiaries = createFilter('globalReducer', [])
+const saveSubsetFilterDiaries = createFilter('globalReducer', ['projects', 'user'])
 
 const config = {
     key: 'BeeSocial',
