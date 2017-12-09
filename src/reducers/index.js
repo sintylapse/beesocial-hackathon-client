@@ -2,13 +2,13 @@ import { persistCombineReducers, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import createFilter from 'redux-persist-transform-filter'
 
-import authReducer from './authReducer.js'
+import globalReducer from './globalReducer.js'
 
-const saveSubsetFilterDiaries = createFilter('authReducer', [])
+const saveSubsetFilterDiaries = createFilter('globalReducer', [])
 
 const config = {
     key: 'BeeSocial',
-    whitelist: ['authReducer'],
+    whitelist: ['globalReducer'],
     storage,
     transforms: [
         saveSubsetFilterDiaries,
@@ -16,7 +16,7 @@ const config = {
 }
 
 const rootReducer = persistCombineReducers(config, {
-    authReducer,
+    globalReducer,
 })
 
 export default rootReducer

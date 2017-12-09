@@ -2,11 +2,11 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import Auth from './Auth.js'
+import CreateProject from './CreateProject.js'
 
 import * as globalActions from '../../../actions/globalActions.js'
 
-class AuthContainer extends React.Component {
+class CreateProjectContainer extends React.Component {
 
     componentDidMount(){
         this.props.actions.setUser({
@@ -15,7 +15,7 @@ class AuthContainer extends React.Component {
     }
 
     render() {
-        return <Auth {...this.props} />
+        return <CreateProject {...this.props} />
     }
 
 }
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(globalActions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectContainer)
