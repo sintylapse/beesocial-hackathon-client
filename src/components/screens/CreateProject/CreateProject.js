@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Input, Modal, Button, Form, Icon, Tag, Tooltip } from 'antd'
+import { Input, Modal, Button, Form, Icon, Tag, Tooltip, List } from 'antd'
 
 const styles = {
     container: {
@@ -12,6 +12,38 @@ const styles = {
         textAlign: 'center',
         marginBottom: 20,
     },
+}
+
+function ProjectItems({ data }){
+    return <List
+        itemLayout = "horizontal"
+        dataSource = {data}
+        renderItem = {
+            item => (
+                <List.Item>
+                    <List.Item.Meta
+                        title = {item.title}
+                        description = {
+                            <div>
+                                <div style = {{ marginBottom: 10 }}>
+                                    {item.body}
+                                </div>
+                                {item.tags.map((tag, index) => {
+                                    const isLongTag = tag.length > 20
+                                    const tagElem = (
+                                        <Tag key={tag}>
+                                            {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                                        </Tag>
+                                    );
+                                    return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem
+                                })}
+                            </div>
+                        }
+                    />
+                </List.Item>
+            )
+        }
+    />
 }
 
 class CreateProject extends Component {
@@ -82,11 +114,7 @@ class CreateProject extends Component {
                 <div style = {{ marginTop: 20 }}>
                     {
                         projects.length > 0 ?
-                            projects.map((project, index) => {
-                                return <div key = {index}>
-                                    project {index}
-                                </div>
-                            }) :
+                            <ProjectItems data = {projects} /> :
                             <div>
                                 Пока проектов нет...
                             </div>
@@ -121,7 +149,7 @@ class CreateProject extends Component {
                             {this.state.tags.map((tag, index) => {
                                 const isLongTag = tag.length > 20;
                                 const tagElem = (
-                                    <Tag key={tag} closable={index !== -1} afterClose={() => this.handleCloseTag(tag)}>
+                                    <Tag key={tag} closable afterClose={() => this.handleCloseTag(tag)}>
                                         {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                                     </Tag>
                                 );
