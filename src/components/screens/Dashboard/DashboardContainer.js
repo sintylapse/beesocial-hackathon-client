@@ -17,6 +17,9 @@ class DashboardContainer extends React.Component {
 const mapStateToProps = state => ({
     user: state.globalReducer.user,
     projects: state.globalReducer.projects,
+    competition: state.globalReducer.competition,
+    publishedProjects: state.globalReducer.publishedProjects,
+    loading: state.globalReducer.loading,
 })
 
 const mapDispatchToProps = dispatch => ({

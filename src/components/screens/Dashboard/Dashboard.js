@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { redirectTo } from '../../../api/browserApi.js'
 
 import CreateProject from '../CreateProject/CreateProject.js'
+import Competition from '../Competition/Competition.js'
 
 import logo from '../../../assets/logo-registration.png'
 
@@ -61,8 +62,8 @@ class App extends Component {
                     <Tabs.TabPane tab={<span>Проекты</span>} key="/dashboard/projects">
                         <CreateProject {...this.props} />
                     </Tabs.TabPane>
-                    <Tabs.TabPane tab={<span>Соревнование за гранд</span>} key="/dashboard/competition">
-                        Соревнование за гранд
+                    <Tabs.TabPane tab={<span>Соревнование за грант</span>} key="/dashboard/competition">
+                        <Competition {...this.props} />
                     </Tabs.TabPane>
                 </Tabs>
             </div>

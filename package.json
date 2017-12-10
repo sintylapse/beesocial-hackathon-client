@@ -5,7 +5,7 @@
   "dependencies": {
     "antd": "^3.0.0",
     "axios": "^0.17.1",
-    "golos": "^0.3.32",
+    "golos": "github:ontofractal/golosjs",
     "moment": "^2.19.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -17,7 +17,8 @@
     "redux-persist": "^5.4.0",
     "redux-persist-transform-filter": "0.0.16",
     "redux-thunk": "^2.2.0",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.6.2",
